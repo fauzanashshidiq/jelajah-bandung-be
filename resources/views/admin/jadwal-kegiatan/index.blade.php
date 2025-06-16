@@ -29,9 +29,9 @@
                     <td class="border border-gray-300 px-4 py-2 text-center">{{ $jadwal->hari }}</td>
                     <td class="border border-gray-300 px-4 py-2 text-center">{{ $jadwal->kegiatan }}</td>
                     <td class="border border-gray-300 px-4 py-2 text-center space-x-2">
-                        <a href="{{ route('jadwal.edit', $jadwal->id_kegiatan) }}" class="bg-green-600 text-white px-3 py-1 rounded hover:bg-green-700">Edit</a>
+                        <a href="{{ route('admin.jadwal.edit', $jadwal->id_kegiatan) }}" class="bg-green-600 text-white px-3 py-1 rounded hover:bg-green-700">Edit</a>
 
-                        <form action="{{ route('jadwal.destroy', $jadwal->id_kegiatan) }}" method="POST" class="inline" onsubmit="return confirm('Yakin ingin menghapus jadwal ini?');">
+                        <form action="{{ route('admin.jadwal.destroy', $jadwal->id_kegiatan) }}" method="POST" class="inline" onsubmit="return confirm('Yakin ingin menghapus jadwal ini?');">
                             @csrf
                             @method('DELETE')
                             <button type="submit" class="bg-red-600 text-white px-3 py-1 rounded hover:bg-red-700">Hapus</button>

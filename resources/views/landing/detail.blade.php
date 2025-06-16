@@ -138,6 +138,22 @@
   </div>
 </section>
 
+<section class="relative bg-blue-600/40 text-white py-24">
+  <div class="relative z-10 max-w-4xl mx-auto px-6 text-center">
+    <h2 class="text-3xl md:text-4xl font-bold text-black mb-4">HUBUNGI CS KAMI</h2>
+    <p class="font-semibold text-black mb-8">Untuk paket wisata custom dan kebutuhan lainnya.</p>
+
+    <div class="space-y-4">
+      <a href="https://wa.me/6285846687692?text=Halo%20Admin" target="_blank" class="inline-flex items-center bg-green-500 hover:bg-green-600 text-white font-bold py-3 px-6 rounded-full shadow-lg transition transform hover:scale-105">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-3" fill="currentColor" viewBox="0 0 24 24">
+          <path d="M20.52 3.48a11.84 11.84 0 0 0-16.7 0A11.84 11.84 0 0 0 3.15 20l-1.22 4.42a.82.82 0 0 0 1 1l4.42-1.22a11.84 11.84 0 0 0 16.7-16.7zM12 21.29a9.25 9.25 0 0 1-5.21-1.55l-.37-.24-2.63.72.71-2.61-.24-.38a9.25 9.25 0 1 1 7.74 4.06zm5.46-6.86-.77.81c-.23.24-.46.27-.73.15a7.3 7.3 0 0 1-2.5-1.56 8.63 8.63 0 0 1-1.59-2.54c-.11-.27-.1-.5.14-.74l.77-.81a.58.58 0 0 0 0-.78l-1.12-1.35a.59.59 0 0 0-.79-.14 2.38 2.38 0 0 0-1.15 1.56c-.15.84.1 1.83.75 2.87a11.23 11.23 0 0 0 3.76 3.76c1.04.65 2.03.9 2.87.75a2.38 2.38 0 0 0 1.56-1.15.59.59 0 0 0-.14-.79l-1.35-1.12a.58.58 0 0 0-.78.01z"/>
+        </svg>
+        0858 4668 7692
+      </a>
+    </div>
+  </div>
+</section>
+
 
 
 <section id="booking" class="py-20 bg-white">
@@ -204,7 +220,7 @@
           <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
             <path d="M6.62 10.79a15.053 15.053 0 006.59 6.59l2.2-2.2a1 1 0 011.01-.24 11.72 11.72 0 003.69.59 1 1 0 011 1v3.5a1 1 0 01-1 1A16 16 0 013 5a1 1 0 011-1h3.5a1 1 0 011 1 11.72 11.72 0 00.59 3.69 1 1 0 01-.24 1.01l-2.2 2.2z"/>
           </svg>
-          0821-1234-5678
+          0858-4668-7692
         </p>
         <p class="flex items-center gap-2 justify-center md:justify-start">
           <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
@@ -219,8 +235,8 @@
     <div class="text-center md:text-center space-y-4">
       <h3 class="text-lg font-bold">Kontak Kami</h3>
       <a target="_blank"
-          class="inline-block border border-white py-2 px-6 rounded-full hover:text-white transition">
-        💬 0858 7164 1398
+          class="cursor-pointer inline-block border hover:bg-green-600 border-white py-2 px-6 rounded-full hover:text-white transition">
+        💬 0858 4668 7692
       </a>
     </div>
 

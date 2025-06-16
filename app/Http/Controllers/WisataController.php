@@ -24,9 +24,11 @@ class WisataController extends Controller
      */
     public function create($id_paket)
 {
-    $pakets = PaketWisata::findOrFail($id_paket);
-    return view('admin.wisata.create', compact('pakets'));
+    $paket = PaketWisata::findOrFail($id_paket);
+    $pakets = PaketWisata::all(); // jika kamu tetap ingin dropdown
+    return view('admin.wisata.create', compact('paket', 'pakets'));
 }
+
 
 
     /**

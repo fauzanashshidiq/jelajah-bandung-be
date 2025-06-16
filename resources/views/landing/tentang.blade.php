@@ -95,7 +95,7 @@
                 <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
                   <path d="M6.62 10.79a15.053 15.053 0 006.59 6.59l2.2-2.2a1 1 0 011.01-.24 11.72 11.72 0 003.69.59 1 1 0 011 1v3.5a1 1 0 01-1 1A16 16 0 013 5a1 1 0 011-1h3.5a1 1 0 011 1 11.72 11.72 0 00.59 3.69 1 1 0 01-.24 1.01l-2.2 2.2z"/>
                 </svg>
-                0821-1234-5678
+                0858-4668-7692
               </p>
               <p class="flex items-center gap-2 justify-center md:justify-start">
                 <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
@@ -110,8 +110,8 @@
           <div class="text-center md:text-center space-y-4">
             <h3 class="text-lg font-bold">Kontak Kami</h3>
             <a target="_blank"
-                class="inline-block border border-white py-2 px-6 rounded-full hover:text-white transition">
-              💬 0858 7164 1398
+                class="cursor-pointer inline-block border hover:bg-green-600 border-white py-2 px-6 rounded-full hover:text-white transition">
+              💬 0858 4668 7692
             </a>
           </div>
       
