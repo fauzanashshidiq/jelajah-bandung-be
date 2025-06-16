@@ -4,7 +4,7 @@
 <div class="max-w-xl mx-auto bg-white p-6 rounded shadow mt-10">
     <h1 class="text-2xl font-bold mb-6">Edit Wisata</h1>
 
-    <form action="{{ route('wisata.update', $wisata->id_wisata) }}" method="POST" enctype="multipart/form-data">
+    <form action="{{ route('admin.wisata.update', $wisata->id_wisata) }}" method="POST" enctype="multipart/form-data">
         @csrf
         @method('PUT')
 
@@ -26,7 +26,7 @@
         </div>
 
         <div class="flex justify-between">
-            <a href="{{ route('wisata.index', ['id_paket' => $wisata->id_paket]) }}" class="text-gray-600 hover:underline">← Kembali</a>
+            <a href="{{ route('admin.wisata.index', ['id_paket' => $wisata->id_paket]) }}" class="text-gray-600 hover:underline">← Kembali</a>
             <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">
                 Simpan Perubahan
             </button>

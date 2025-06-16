@@ -6,7 +6,7 @@
 <div class="max-w-xl mx-auto bg-white p-6 rounded shadow">
   <h1 class="text-xl font-bold mb-6">Tambah Harga untuk Paket: {{ $paket->nama_paket }}</h1>
 
-  <form action="{{ route('harga.store', $paket->id_paket) }}" method="POST">
+  <form action="{{ route('admin.harga.store', $paket->id_paket) }}" method="POST">
     @csrf
     <div class="mb-4">
       <label for="peserta" class="block font-medium">Jumlah Peserta</label>
@@ -23,7 +23,7 @@
     </button>
   </form>
   <div class="mt-6">
-    <a href="{{ route('harga.index', $paket->id_paket) }}" class="text-gray-600 hover:underline">← Kembali ke Daftar Harga</a>
+    <a href="{{ route('admin.harga.index', $paket->id_paket) }}" class="text-gray-600 hover:underline">← Kembali ke Daftar Harga</a>
 </div>
 </div>
 @endsection

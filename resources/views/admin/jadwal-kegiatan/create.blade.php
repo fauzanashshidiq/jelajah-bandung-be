@@ -20,7 +20,7 @@
         </div>
     @endif
 
-    <form action="{{ route('jadwal.store', $paket->id_paket) }}" method="POST">
+    <form action="{{ route('admin.jadwal.store', $paket->id_paket) }}" method="POST">
         @csrf
         <div class="mb-4">
             <label class="block font-semibold mb-1">Hari (1 s/d {{ $paket->durasi_paket }})</label>
@@ -35,7 +35,7 @@
         <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">Tambah Jadwal</button>
     </form>
     <div class="mt-6">
-        <a href="{{ route('jadwal.index', $paket->id_paket) }}" class="text-gray-600 hover:underline">← Kembali ke Jadwal Kegiatan</a>
+        <a href="{{ route('admin.jadwal.index', $paket->id_paket) }}" class="text-gray-600 hover:underline">← Kembali ke Jadwal Kegiatan</a>
     </div>
 </div>
 @endsection

@@ -5,7 +5,7 @@
     <h2 class="text-xl font-bold mb-4">Edit Fasilitas: {{ $paket->nama_paket }}</h2>
 
 
-    <form action="{{ route('fasilitas.update', $fasilitas->id_fasilitas) }}" method="POST">
+    <form action="{{ route('admin.fasilitas.update', $fasilitas->id_fasilitas) }}" method="POST">
         @csrf @method('PUT')
         <div class="mb-4">
             <label class="block mb-1">Nama Fasilitas</label>
@@ -21,7 +21,7 @@
         <button class="bg-blue-600 text-white px-4 py-2 rounded">Update</button>
     </form>
     <div class="mt-6">
-        <a href="{{ route('fasilitas.index', $paket->id_paket) }}" class="text-gray-600 hover:underline">← Kembali ke Daftar Fasilitas</a>
+        <a href="{{ route('admin.fasilitas.index', $paket->id_paket) }}" class="text-gray-600 hover:underline">← Kembali ke Daftar Fasilitas</a>
     </div>
 </div>
 @endsection

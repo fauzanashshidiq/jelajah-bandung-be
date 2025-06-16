@@ -34,7 +34,10 @@
         <label>Gambar Paket</label>
         <input type="file" name="gambar_paket" class="w-full p-2 border rounded" />
       </div>
-      <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded">Simpan</button>
+      <div class="flex justify-between">
+        <a href="/admin/paket-wisata" class="text-gray-600 hover:underline">← Kembali</a>
+        <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">Simpan</button>
+      </div>
     </form>
   </div>
   @endsection

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\PaketWisata;
+use App\Models\Testimoni;
 use Illuminate\Http\Request;
 
 class LandingController extends Controller
@@ -23,7 +24,9 @@ class LandingController extends Controller
         }])->where('durasi_paket', $durasi)->get();
     }
 
-    return view('landing.index', compact('durasiList', 'paketsByDurasi'));
+    $testimonis = Testimoni::latest()->take(6)->get();
+
+    return view('landing.index', compact('durasiList', 'paketsByDurasi', 'testimonis'));
 }
 
 }

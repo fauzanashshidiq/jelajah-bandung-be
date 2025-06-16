@@ -1,99 +1,157 @@
-@extends('layouts.landing')
+@extends('layouts.landingdetail')
 
 @section('content')
 <!-- Hero Section -->
-<section class="bg-cover bg-center h-screen text-white flex items-center justify-center" style="background-image: url('{{ asset('image/hero.png') }}');">
-  <div class="text-center">
-    <h1 class="text-4xl md:text-5xl font-bold mb-4">{{ $paket->nama_paket }}</h1>
+<section class="relative h-screen flex items-center justify-center text-white overflow-hidden">
+  <!-- Layer gambar tetap tajam -->
+  <div class="absolute inset-0 bg-cover bg-center -z-20" 
+       style="background-image: url('{{ asset('image/' . $paket->gambar_paket) }}');">
+  </div>
+
+  <!-- Layer semi-transparan agar teks terbaca, efek gelap halus -->
+  <div class="absolute inset-0 bg-black/40 -z-10"></div>
+
+  <!-- Konten utama -->
+  <div class="text-center px-4">
+    <h1 class="text-4xl md:text-5xl font-bold mb-4">Paket Wisata Bandung: {{ $paket->nama_paket }}</h1>
     <p class="text-lg md:text-xl">{{ $paket->deskripsi_paket }}</p>
   </div>
 </section>
 
-<section id="paket" class="py-16 bg-gray-50">
-    <div class="max-w-5xl mx-auto px-4">
-      <h2 class="text-3xl font-bold text-center mb-10">Detail Paket Wisata</h2>
-  
-      <!-- Wisata -->
-      <h3 class="text-2xl font-semibold mb-4 text-blue-600">Wisata</h3>
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-10">
-        @foreach ($wisatas as $w)
-          <div class="bg-white p-4 rounded-xl shadow">
-            <img src="{{ asset('image/' . $w->gambar_wisata) }}" class="w-24 h-16 object-cover" alt="Gambar">
-            <h4 class="font-bold text-lg">{{ $w->nama_wisata }}</h4>
-            <p class="text-gray-600">{{ $w->deskripsi_wisata }}</p>
-          </div>
-        @endforeach
-      </div>
-  
-      <!-- Jadwal -->
-    <h3 class="text-2xl font-semibold mb-4 text-blue-600">Jadwal Kegiatan</h3>
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-10">
-        @foreach ($jadwal->groupBy('hari') as $hari => $kegiatanPerHari)
+<section id="wisata" class="py-16 bg-white/70" x-data="{ tab: 'wisata' }">
+  <div class="max-w-5xl mx-auto px-4">
+    <h2 class="text-3xl font-bold text-center mb-10">Detail Paket Wisata</h2>
+
+    <!-- Tombol Tab -->
+    <div class="flex justify-center gap-2 mb-8 flex-wrap">
+      <button @click="tab = 'wisata'"
+              :class="tab === 'wisata' ? 'bg-blue-600 text-white hover:bg-blue-700' : 'bg-gray-200 text-gray-700 hover:bg-blue-700'"
+              class="px-4 py-2 rounded-full font-semibold transition">
+        Wisata
+      </button>
+      <button @click="tab = 'jadwal'"
+              :class="tab === 'jadwal' ? 'bg-blue-600 text-white hover:bg-blue-700' : 'bg-gray-200 text-gray-700 hover:bg-blue-700'"
+              class="px-4 py-2 rounded-full font-semibold transition">
+        Jadwal
+      </button>
+      <button @click="tab = 'fasilitas'"
+              :class="tab === 'fasilitas' ? 'bg-blue-600 text-white hover:bg-blue-700' : 'bg-gray-200 text-gray-700 hover:bg-blue-700'"
+              class="px-4 py-2 rounded-full font-semibold transition">
+        Fasilitas
+      </button>
+      <button @click="tab = 'harga'"
+              :class="tab === 'harga' ? 'bg-blue-600 text-white hover:bg-blue-700' : 'bg-gray-200 text-gray-700 hover:bg-blue-700'"
+              class="px-4 py-2 rounded-full font-semibold transition">
+        Harga
+      </button>
+    </div>
+
+    <!-- Konten Wisata -->
+    <div x-show="tab === 'wisata'" x-transition>
+      @if ($wisatas->isNotEmpty())
+        <h3 class="text-2xl font-semibold mb-4 text-blue-600">Wisata</h3>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-10">
+          @foreach ($wisatas as $w)
             <div class="bg-white p-4 rounded-xl shadow">
-            <h4 class="font-bold text-lg mb-2">Tour Hari Ke-{{ $hari }}</h4>
-            <ul class="list-disc list-inside text-gray-600 space-y-1">
+              <img src="{{ asset('image/' . $w->gambar_wisata) }}" 
+     class="w-full h-60 object-cover mb-4 rounded" 
+     alt="Gambar">
+
+              <h4 class="font-bold text-lg">{{ $w->nama_wisata }}</h4>
+              <p class="text-gray-600">{{ $w->deskripsi_wisata }}</p>
+            </div>
+          @endforeach
+        </div>
+      @else
+        <p class="text-center text-gray-500 mb-10">Belum ada data wisata.</p>
+      @endif
+    </div>
+
+    <!-- Konten Jadwal -->
+    <div x-show="tab === 'jadwal'" x-transition>
+      @if ($jadwal->isNotEmpty())
+        <h3 class="text-2xl font-semibold mb-4 text-blue-600">Jadwal Kegiatan</h3>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-10">
+          @foreach ($jadwal->groupBy('hari') as $hari => $kegiatanPerHari)
+            <div class="bg-white p-4 rounded-xl shadow">
+              <h4 class="font-bold text-lg mb-2">Tour Hari Ke-{{ $hari }}</h4>
+              <ul class="list-disc list-inside text-gray-600 space-y-1">
                 @foreach ($kegiatanPerHari as $kegiatan)
-                <li>{{ $kegiatan->kegiatan }}</li>
+                  <li>{{ $kegiatan->kegiatan }}</li>
                 @endforeach
-            </ul>
+              </ul>
             </div>
-        @endforeach
+          @endforeach
+        </div>
+      @else
+        <p class="text-center text-gray-500 mb-10">Jadwal belum tersedia.</p>
+      @endif
     </div>
 
-      <!-- Fasilitas -->
-    <h3 class="text-2xl font-semibold mb-4 text-blue-600">Fasilitas</h3>
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-10">
-        @foreach ($fasilitas->groupBy('included') as $included => $listFasilitas)
+    <!-- Konten Fasilitas -->
+    <div x-show="tab === 'fasilitas'" x-transition>
+      @if ($fasilitas->isNotEmpty())
+        <h3 class="text-2xl font-semibold mb-4 text-blue-600">Fasilitas</h3>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-10">
+          @foreach ($fasilitas->groupBy('included') as $included => $listFasilitas)
             <div class="bg-white p-4 rounded-xl shadow">
-            <h4 class="font-bold text-lg mb-2">
-                {{ $included ? 'Included' : 'Not Included' }}
-            </h4>
-            <ul class="list-disc list-inside text-gray-600 space-y-1">
-                @foreach ($listFasilitas as $fasilitasItem)
-                <li>{{ $fasilitasItem->nama_fasilitas }}</li>
+              <h4 class="font-bold text-lg mb-2">{{ $included ? 'Included' : 'Excluded' }}</h4>
+              <ul class="list-disc list-inside text-gray-600 space-y-1">
+                @foreach ($listFasilitas as $item)
+                  <li>{{ $item->nama_fasilitas }}</li>
                 @endforeach
-            </ul>
+              </ul>
             </div>
-        @endforeach
+          @endforeach
+        </div>
+      @else
+        <p class="text-center text-gray-500 mb-10">Fasilitas belum tersedia.</p>
+      @endif
     </div>
 
-  
-      <!-- Harga -->
-    <h3 class="text-2xl font-semibold mb-4 text-blue-600">Harga</h3>
-    <div class="overflow-x-auto mb-10">
-    <table class="min-w-full bg-white rounded-xl shadow text-left">
-        <thead class="bg-blue-700 text-white">
-        <tr>
-            <th class="border py-3 px-4 text-center">Jumlah Peserta</th>
-            <th class="border py-3 px-4 text-center">Harga</th>
-        </tr>
-        </thead>
-        <tbody class="text-gray-700">
-        @foreach ($harga as $h)
-            <tr class="border-t">
-            <td class="border py-3 px-4 text-center">{{ $h->peserta }} orang</td>
-            <td class="border py-3 px-4 text-center">Rp {{ number_format($h->harga_per_peserta, 0) }} / pax</td>
-            </tr>
-        @endforeach
-        </tbody>
-    </table>
+    <!-- Konten Harga -->
+    <div x-show="tab === 'harga'" x-transition>
+      @if ($harga->isNotEmpty())
+        <h3 class="text-2xl font-semibold mb-4 text-blue-600">Harga</h3>
+        <div class="overflow-x-auto mb-10">
+          <table class="min-w-full bg-white rounded-xl shadow text-left table-fixed">
+            <thead class="bg-blue-700 text-white">
+              <tr>
+                <th class="w-1/2 border border-blue-700 py-3 px-6 text-center font-medium">Jumlah Peserta</th>
+                <th class="w-1/2 border border-blue-700 py-3 px-6 text-center font-medium">Harga</th>
+              </tr>
+            </thead>
+            <tbody class="text-gray-700 divide-y divide-gray-200">
+              @foreach ($harga as $h)
+                <tr class="hover:bg-blue-50 transition duration-200">
+                  <td class="w-1/2 border border-blue-700 py-3 px-6 text-center">{{ $h->peserta }} orang</td>
+                  <td class="w-1/2 border border-blue-700 py-3 px-6 text-center">Rp {{ number_format($h->harga_per_peserta, 0) }} / pax</td>
+                </tr>
+              @endforeach
+            </tbody>            
+          </table>
+        </div>        
+      @else
+        <p class="text-center text-gray-500 mb-10">Belum ada data harga.</p>
+      @endif
     </div>
+  </div>
 </section>
 
-<section id="kontak" class="py-20 bg-white">
+
+
+<section id="booking" class="py-20 bg-white">
     <div class="container mx-auto px-4">
       <div class="flex flex-col md:flex-row items-center justify-between">
-        
         <!-- Gambar -->
         <div class="w-full md:w-1/2 mb-10 md:mb-0">
-          <img src="/image/hero.png" alt="Booking Image" class="rounded-xl shadow-lg w-full h-auto object-cover" />
+          <img src="/image/hero.png" alt="Booking Image" class="w-full h-auto object-cover" />
         </div>
   
         <!-- Form Kontak -->
         <div class="w-full md:w-1/2 bg-white rounded-3xl shadow-xl p-8 md:ml-8">
           <h2 class="text-2xl md:text-3xl font-bold text-gray-800 mb-6">BOOKING SEKARANG,<br>UNTUK LIBURANMU NANTI</h2>
-          
-          <form action="#" method="POST" class="space-y-4">
+          <form class="space-y-4">
             <div>
               <label class="block font-medium text-gray-700 mb-1">Name <span class="text-red-500">*</span></label>
               <input type="text" name="name" required class="w-full border border-gray-300 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-red-400" />
@@ -117,20 +175,60 @@
             </div>
           </form>
         </div>
-  
       </div>
     </div>
-  </section>
+</section>
   
 
 <!-- Kontak Kami -->
-<section class="py-16" id="kontak">
-    <div class="max-w-4xl mx-auto px-4 text-center">
-      <h2 class="text-3xl font-bold mb-6">Kontak Kami</h2>
-      <p class="mb-4">Hubungi kami untuk pemesanan atau informasi lebih lanjut:</p>
-      <p>Email: info@jelajahbandung.com</p>
-      <p>Telepon: 0821-1234-5678</p>
-      <p>Alamat: Jl. Braga No. 10, Bandung</p>
+<section id="kontak" class="py-16 bg-blue-600 scroll-mt-24 text-white">
+  <div class="max-w-7xl mx-auto px-4 grid grid-cols-1 md:grid-cols-3 gap-10 items-start">
+    
+    <!-- Kolom 1 (md:col-span-2): Logo dan Informasi -->
+    <div class="md:col-span-2 flex flex-col md:flex-row items-center md:items-start gap-6">
+      <!-- Logo -->
+      <div class="shrink-0">
+        <img src="{{ asset('image/jelajah-bandung.png') }}" alt="Jelajah Bandung" class="w-40 h-40 object-contain">
+      </div>
+
+      <!-- Informasi -->
+      <div class="space-y-4 text-center md:text-left">
+        <h3 class="text-lg font-bold">PT. JELAJAH BANDUNG</h3>
+        <p class="flex items-start gap-2 justify-center md:justify-start">
+          <svg class="w-5 h-5 mt-1" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5S10.62 6.5 12 6.5 14.5 7.62 14.5 9 13.38 11.5 12 11.5z"/>
+          </svg>
+          Jl. Braga No. 10, Bandung
+        </p>
+        <p class="flex items-center gap-2 justify-center md:justify-start">
+          <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M6.62 10.79a15.053 15.053 0 006.59 6.59l2.2-2.2a1 1 0 011.01-.24 11.72 11.72 0 003.69.59 1 1 0 011 1v3.5a1 1 0 01-1 1A16 16 0 013 5a1 1 0 011-1h3.5a1 1 0 011 1 11.72 11.72 0 00.59 3.69 1 1 0 01-.24 1.01l-2.2 2.2z"/>
+          </svg>
+          0821-1234-5678
+        </p>
+        <p class="flex items-center gap-2 justify-center md:justify-start">
+          <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M20 4H4a2 2 0 00-2 2v1.8l10 6.2 10-6.2V6a2 2 0 00-2-2zm0 4.2l-8 5-8-5V18a2 2 0 002 2h12a2 2 0 002-2V8.2z"/>
+          </svg>
+          info@jelajahbandung.com
+        </p>
+      </div>
     </div>
-  </section>
+
+    <!-- Kolom 2: Kontak Kami -->
+    <div class="text-center md:text-center space-y-4">
+      <h3 class="text-lg font-bold">Kontak Kami</h3>
+      <a target="_blank"
+          class="inline-block border border-white py-2 px-6 rounded-full hover:text-white transition">
+        💬 0858 7164 1398
+      </a>
+    </div>
+
+  </div>
+
+  <!-- Copyright -->
+  <div class="mt-10 text-center text-sm text-white/80">
+    &copy; {{ date('Y') }} PT. Jelajah Bandung. All rights reserved.
+  </div>
+</section>
   @endsection

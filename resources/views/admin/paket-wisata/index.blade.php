@@ -11,7 +11,7 @@
       + Tambah Paket Wisata
     </a>
   
-    <form action="{{ route('paket-wisata.index') }}" method="GET" class="flex items-center space-x-2">
+    <form action="{{ route('admin.paket-wisata.index') }}" method="GET" class="flex items-center space-x-2">
       <input type="text" name="search" placeholder="Cari nama paket..." value="{{ request('search') }}"
         class="border border-gray-300 rounded px-3 py-1 focus:outline-none focus:ring-2 focus:ring-blue-500">
       <button type="submit"
@@ -33,9 +33,13 @@
     <tbody>
       @foreach ($paketWisatas as $paket)
       <tr>
-        <td class="border border-gray-300 px-4 py-2 text-center">{{ $paketWisatas->firstItem() + $loop->index }}</td>
-        <td class="border border-gray-300 px-4 py-2 text-center">{{ $paket->nama_paket }}</td>
-        <td class="border border-gray-300 px-4 py-2 text-center">{{ $paket->deskripsi_paket }}</td>
+        <td class="border border-gray-300 px-4 py-2 text-center w-[50px] max-w-xs">{{ $paketWisatas->firstItem() + $loop->index }}</td>
+        <td class="border border-gray-300 px-4 py-2 text-center w-[200px] max-w-xs">{{ $paket->nama_paket }}</td>
+        <td class="border border-gray-300 px-4 py-2 text-left w-[300px] max-w-xs">
+          <div class="line-clamp-3 overflow-hidden">
+            {{ $paket->deskripsi_paket }}
+          </div>
+        </td>        
         <td class="border border-gray-300 px-4 py-2 text-center">{{ $paket->durasi_paket }} hari</td>
         <td class="border border-gray-300 px-4 py-2 text-center align-middle">
           <img src="{{ asset('image/' . $paket->gambar_paket) }}" alt="Gambar Paket" class="mx-auto w-28 h-20 object-cover rounded" />
@@ -46,16 +50,16 @@
             <a href="/admin/paket-wisata/{{ $paket->id_paket }}/edit" class="bg-green-600 text-white px-3 py-1 rounded hover:bg-green-700">Edit</a>
         
             {{-- Lihat --}}
-            <a href="{{ route('wisata.index', $paket->id_paket) }}" class="bg-indigo-600 text-white px-3 py-1 rounded hover:bg-indigo-700">
+            <a href="{{ route('admin.wisata.index', $paket->id_paket) }}" class="bg-indigo-600 text-white px-3 py-1 rounded hover:bg-indigo-700">
               Lihat Wisata
             </a>
-            <a href="{{ route('jadwal.index', $paket->id_paket) }}" class="bg-indigo-600 text-white px-3 py-1 rounded hover:bg-indigo-700">
+            <a href="{{ route('admin.jadwal.index', $paket->id_paket) }}" class="bg-indigo-600 text-white px-3 py-1 rounded hover:bg-indigo-700">
               Lihat Jadwal
             </a>
-            <a href="{{ route('fasilitas.index', $paket->id_paket) }}" class="bg-indigo-600 text-white px-3 py-1 rounded hover:bg-indigo-700">
+            <a href="{{ route('admin.fasilitas.index', $paket->id_paket) }}" class="bg-indigo-600 text-white px-3 py-1 rounded hover:bg-indigo-700">
               Lihat Fasilitas
             </a>
-            <a href="{{ route('harga.index', $paket->id_paket) }}" class="bg-indigo-600 text-white px-3 py-1 rounded hover:bg-indigo-700">
+            <a href="{{ route('admin.harga.index', $paket->id_paket) }}" class="bg-indigo-600 text-white px-3 py-1 rounded hover:bg-indigo-700">
               Lihat Harga
             </a>
         

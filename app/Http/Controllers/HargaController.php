@@ -37,7 +37,7 @@ class HargaController extends Controller
             'id_paket' => $id_paket,
         ]);
 
-        return redirect()->route('harga.index', $id_paket)->with('success', 'Harga berhasil ditambahkan');
+        return redirect()->route('admin.harga.index', $id_paket)->with('success', 'Harga berhasil ditambahkan');
     }
 
     /**
@@ -67,7 +67,7 @@ class HargaController extends Controller
         $harga = Harga::findOrFail($id_harga);
         $harga->update($request->only('peserta', 'harga_per_peserta'));
 
-        return redirect()->route('harga.index', $harga->id_paket)->with('success', 'Harga berhasil diperbarui');
+        return redirect()->route('admin.harga.index', $harga->id_paket)->with('success', 'Harga berhasil diperbarui');
     }
 
     public function destroy($id_harga)
@@ -76,6 +76,6 @@ class HargaController extends Controller
         $id_paket = $harga->id_paket;
         $harga->delete();
 
-        return redirect()->route('harga.index', $id_paket)->with('success', 'Harga berhasil dihapus');
+        return redirect()->route('admin.harga.index', $id_paket)->with('success', 'Harga berhasil dihapus');
     }
 }

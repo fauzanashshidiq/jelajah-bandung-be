@@ -14,7 +14,7 @@
         </div>
     @endif
 
-    <form action="{{ route('jadwal.update', $jadwal->id_kegiatan) }}" method="POST">
+    <form action="{{ route('admin.jadwal.update', $jadwal->id_kegiatan) }}" method="POST">
         @csrf
         @method('PUT')
 
@@ -32,7 +32,7 @@
     </form>
 
     <div class="mt-6">
-        <a href="{{ route('jadwal.index', $paket->id_paket) }}" class="text-gray-600 hover:underline">← Kembali ke Jadwal Kegiatan</a>
+        <a href="{{ route('admin.jadwal.index', $paket->id_paket) }}" class="text-gray-600 hover:underline">← Kembali ke Jadwal Kegiatan</a>
     </div>
 </div>
 @endsection

@@ -10,7 +10,7 @@
         </div>
     @endif
 
-    <a href="{{ route('jadwal.create', $paket->id_paket) }}" class="inline-block mb-4 bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">+ Tambah Jadwal</a>
+    <a href="{{ route('admin.jadwal.create', $paket->id_paket) }}" class="inline-block mb-4 bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">+ Tambah Jadwal</a>
 
     @if($jadwals->isEmpty())
         <p>Tidak ada jadwal kegiatan.</p>
@@ -44,7 +44,7 @@
     @endif
 
     <div class="mt-6">
-        <a href="{{ route('paket-wisata.index') }}" class="text-gray-600 hover:underline">← Kembali ke Paket Wisata</a>
+        <a href="{{ route('admin.paket-wisata.index') }}" class="text-gray-600 hover:underline">← Kembali ke Paket Wisata</a>
     </div>
 </div>
 @endsection

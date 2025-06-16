@@ -52,7 +52,7 @@ class WisataController extends Controller
         'id_paket' => $request->id_paket
     ]);
 
-    return redirect()->route('wisata.index', $id_paket)->with('success', 'Wisata berhasil ditambahkan');
+    return redirect()->route('admin.wisata.index', $id_paket)->with('success', 'Wisata berhasil ditambahkan');
 }
 
 
@@ -107,7 +107,7 @@ class WisataController extends Controller
 
     $wisata->save();
 
-    return redirect()->route('wisata.index', ['id_paket' => $wisata->id_paket])->with('success', 'Data wisata berhasil diperbarui.');
+    return redirect()->route('admin.wisata.index', ['id_paket' => $wisata->id_paket])->with('success', 'Data wisata berhasil diperbarui.');
 }
 
 
@@ -126,7 +126,7 @@ public function destroy(Wisata $wisata, $id)
     $id_paket = $wisata->id_paket; // ambil sebelum delete
     $wisata->delete();
 
-    return redirect()->route('wisata.index', ['id_paket' => $id_paket])->with('success', 'Data wisata berhasil dihapus.');
+    return redirect()->route('admin.wisata.index', ['id_paket' => $id_paket])->with('success', 'Data wisata berhasil dihapus.');
 }
 
 }

@@ -2,7 +2,7 @@
 @section('content')
 <h1 class="text-xl font-semibold mb-4">Tambah Wisata</h1>
 
-<form action="{{ route('wisata.store', ['id_paket' => $paket->id_paket]) }}" method="POST" enctype="multipart/form-data" class="space-y-4">
+<form action="{{ route('admin.wisata.store', ['id_paket' => $paket->id_paket]) }}" method="POST" enctype="multipart/form-data" class="space-y-4">
     @csrf
     <div>
         <label>Nama Wisata</label>
