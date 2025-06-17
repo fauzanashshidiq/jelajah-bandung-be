@@ -44,7 +44,7 @@ class WisataController extends Controller
     ]);
 
     $file = $request->file('gambar_wisata');
-    $namaFile = $file->getClientOriginalName();
+    $namaFile = time() . '.' . $file->getClientOriginalName();
     $file->move(public_path('image'), $namaFile);
 
     Wisata::create([

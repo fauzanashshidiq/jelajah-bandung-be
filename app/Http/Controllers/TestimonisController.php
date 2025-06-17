@@ -27,11 +27,11 @@ class TestimonisController extends Controller
             'foto' => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
         ]);
 
-        $data = $request->only('nama_pengguna', 'isi');
+        $data = $request->only('nama_pengguna', 'isi', 'foto');
 
         if ($request->hasFile('foto')) {
             $file = $request->file('foto');
-            $nama_file = time() . '.' . $file->getClientOriginalExtension();
+            $nama_file = $file->getClientOriginalExtension();
             $file->move(public_path('image/testimoni'), $nama_file); // simpan ke public/image/testimoni
             $data['foto'] = $nama_file;
         }
@@ -58,7 +58,7 @@ class TestimonisController extends Controller
         'foto' => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
     ]);
 
-    $data = $request->only('nama_pengguna', 'isi');
+    $data = $request->only('nama_pengguna', 'isi', 'foto');
 
     if ($request->hasFile('foto')) {
         // Hapus foto lama jika ada
